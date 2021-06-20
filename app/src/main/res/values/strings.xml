@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GreedyGamesPractical</string>
+    <string name="str_home">Home</string>
+    <string name="language">Language :</string>
+    <string name="release_date">Release Date :</string>
+    <string name="release_status">Release Status :</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="production_house">Production House</string>
+    <string name="cast">Cast</string>
+    <string name="review">Review</string>
+    <string name="similar_movies">Similar Movies</string>
+    <string name="reviews">Reviews</string>
+    <string name="see_more">See More</string>
+    <string name="see_less">See Less</string>
+    <string name="no_internet_message">No Internet Connection.</string>
+    <string name="no_data_available">No Data Available</string>
+</resources>

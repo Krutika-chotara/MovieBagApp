@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.example.greedygamespractical.ui.moviedetails.viewmodel.MovieDetailsViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:id="@+id/llMovieDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgMovie"
+                        url="@{vm.movieDetails.posterPath}"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_170sdp"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/ic_movie_placeholder" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:src="@drawable/ic_blue_back"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+                </FrameLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-25dp"
+                    android:background="@drawable/top_corner_round_bg"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingEnd="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_synopsis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/BoldText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:text="@{vm.movieDetails.title}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            app:layout_constraintBottom_toBottomOf="@id/cbFav"
+                            app:layout_constraintEnd_toStartOf="@id/cbFav"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbFav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/favourite_toggle"
+                            android:checked="true"
+                            app:elevation="4dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatRatingBar
+                            android:id="@+id/ratingBar"
+                            style="@style/RatingBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:isIndicator="true"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:rating="3.5"
+                            android:stepSize="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cbFav" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtRating"
+                            style="@style/MediumText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@{vm.movieDetails.voteAverage.toString()}"
+                            android:textSize="@dimen/_14ssp"
+                            app:layout_constraintStart_toEndOf="@id/ratingBar"
+                            app:layout_constraintTop_toBottomOf="@id/cbFav" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtLan"
+                            style="@style/MediumText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/language"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtRating" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtLanValue"
+                            style="@style/MediumText"
+                            setLanguage="@{vm.movieDetails.originalLanguage}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingEnd="0dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toEndOf="@id/txtLan"
+                            app:layout_constraintTop_toTopOf="@id/txtLan"
+                            tools:text="English" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtRDate"
+                            style="@style/MediumText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/release_date"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtLan" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtDateValue"
+                            style="@style/MediumText"
+                            setDate="@{vm.movieDetails.releaseDate}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingEnd="0dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toEndOf="@id/txtRDate"
+                            app:layout_constraintTop_toTopOf="@id/txtRDate" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtRStatus"
+                            style="@style/MediumText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/release_status"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtRDate" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtRStatusValue"
+                            style="@style/MediumText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingEnd="0dp"
+                            android:singleLine="true"
+                            android:text="@{vm.movieDetails.status}"
+                            android:textColor="#618CFF"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toEndOf="@id/txtRStatus"
+                            app:layout_constraintTop_toTopOf="@id/txtRStatus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtSynopsis"
+                            style="@style/SemiBoldText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/synopsis"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtRStatus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/synopsis"
+                            style="@style/MediumText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@{vm.movieDetails.overview}"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtSynopsis" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtHouse"
+                            style="@style/BoldText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/production_house"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/synopsis" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycleViewProduction"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtHouse"
+                            tools:itemCount="10"
+                            tools:listitem="@layout/item_production_house" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardCast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            app:cardCornerRadius="@dimen/_7sdp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/recycleViewProduction">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnCast"
+                                style="@style/MediumText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="#618CFF"
+                                android:paddingHorizontal="@dimen/_40sdp"
+                                android:text="@string/cast"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardReview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            app:cardCornerRadius="@dimen/_7sdp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toEndOf="@id/cardCast"
+                            app:layout_constraintTop_toBottomOf="@id/recycleViewProduction">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnReview"
+                                style="@style/MediumText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="#618CFF"
+                                android:paddingHorizontal="@dimen/_30sdp"
+                                android:text="@string/review"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtSimilar"
+                            style="@style/BoldText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/similar_movies"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardCast" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycleViewSimilarMovies"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_10sdp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtSimilar"
+                            tools:itemCount="10"
+                            tools:listitem="@layout/item_similar_movies" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:foregroundTint="@color/blue"
+                android:indeterminateTint="@color/blue"
+                android:visibility="@{vm.movieDetails==null?View.VISIBLE:View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtNoData"
+                style="@style/BoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:text="@string/no_data_available"
+                android:textSize="@dimen/_16ssp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background"
+        android:gravity="center_vertical|fill_horizontal"
+        android:left="@dimen/_5sdp"
+        android:right="@dimen/_5sdp">
+        <shape android:shape="rectangle">
+            <corners android:radius="2dp"/>
+            <size android:height="5dp" android:width="@dimen/_25sdp"/>
+            <solid android:color="#618CFF" />
+            <padding android:left="@dimen/_5sdp" android:right="@dimen/_5sdp"/>
+        </shape>
+    </item>
+</layer-list>
